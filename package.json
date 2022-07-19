@@ -1,0 +1,29 @@
+{
+  "name": "@donutteam/koa-router",
+  "version": "1.0.0",
+  "description": "A class for creating Koa middlewares that route requests based on the request URL.",
+  "main": "./index.js",
+  "scripts": {
+    "lint": "eslint . -c ./.eslintrc.cjs",
+    "lint-fix": "eslint . -c ./.eslintrc.cjs --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donutteam/koa-router.git"
+  },
+  "keywords": [
+    "koa",
+    "koa-middleware",
+    "middleware",
+    "routing"
+  ],
+  "author": "Donut Team",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/router": "^12.0.0"
+  },
+  "devDependencies": {
+    "@donutteam/eslint-config": "^1.0.6",
+    "koa": "^2.13.4"
+  }
+}

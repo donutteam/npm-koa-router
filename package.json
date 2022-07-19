@@ -19,6 +19,7 @@
   ],
   "author": "Donut Team",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "@koa/router": "^12.0.0"
   },

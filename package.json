@@ -2,7 +2,7 @@
   "name": "@donutteam/koa-router",
   "version": "1.1.0",
   "description": "A class for creating Koa middlewares that route requests based on the request URL.",
-  "main": "./index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "npx rimraf lib && npx tsc",
     "lint": "eslint . -c ./.eslintrc.cjs",

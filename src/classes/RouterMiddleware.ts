@@ -84,7 +84,7 @@ export class RouterMiddleware
 
 			if (entry.isDirectory())
 			{
-				if (options?.excludedDirectoryNames.includes(entry.name))
+				if (options?.excludedDirectoryNames?.includes(entry.name))
 				{
 					continue;
 				}
@@ -93,7 +93,7 @@ export class RouterMiddleware
 			}
 			else
 			{
-				if (options?.excludedFileNames.includes(entry.name))
+				if (options?.excludedFileNames?.includes(entry.name))
 				{
 					continue;
 				}

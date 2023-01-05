@@ -84,7 +84,7 @@ export class RouterMiddleware
 
 			if (entry.isDirectory())
 			{
-				if (options?.excludedDirectoryNames != null && options.excludedDirectoryNames.indexOf(entry.name) != -1)
+				if (options?.excludedDirectoryNames.includes(entry.name))
 				{
 					continue;
 				}
@@ -93,16 +93,16 @@ export class RouterMiddleware
 			}
 			else
 			{
-				if (options?.excludedFileNames != null && options.excludedFileNames.indexOf(entry.name) != -1)
+				if (options.excludedFileNames.includes(entry.name))
 				{
 					continue;
 				}
 
 				const parsedPath = path.parse(entryPath);
-		
+
 				if (parsedPath.ext != ".js")
 				{
-					return;
+					continue;
 				}
 
 				try
@@ -146,7 +146,7 @@ export class RouterMiddleware
 
 			this.router.get(route.routePath, ...middleware);
 
-			console.log(`[Server] Registered GET ${ route.routePath }`);
+			console.log(`[RouterMiddleware] Loaded GET ${ route.routePath }`);
 		}
 
 		if (route.routePost != null)
@@ -160,7 +160,7 @@ export class RouterMiddleware
 
 			this.router.post(route.routePath, ...middleware);
 
-			console.log(`[Server] Registered POST ${ route.routePath }`);
+			console.log(`[RouterMiddleware] Loaded POST ${ route.routePath }`);
 		}
 	}
 }

@@ -93,7 +93,7 @@ export class RouterMiddleware
 			}
 			else
 			{
-				if (options.excludedFileNames.includes(entry.name))
+				if (options?.excludedFileNames.includes(entry.name))
 				{
 					continue;
 				}

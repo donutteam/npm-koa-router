@@ -1,6 +1,6 @@
 {
   "name": "@donutteam/koa-router",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "description": "A class for creating Koa middlewares that route requests based on the request URL.",
   "main": "./lib/index.js",
   "scripts": {

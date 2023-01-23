@@ -30,8 +30,11 @@ export interface RouterMiddlewareLoadRouteOptions
 
 export interface RouterMiddlewareRoute
 {
-	/** The route's path. */
-	routePath : string;
+	/** Whether this route is enabled. Defaults to true if not specified. */
+	routeEnabled : boolean;
+
+	/** The route's path. Can be an array for multiple paths that lead to the same route. */
+	routePath : string | string[];
 
 	/** An array of middleware used for GET requests to this route. */
 	routeGetMiddlewares? : Middleware[];
@@ -130,10 +133,17 @@ export class RouterMiddleware
 	{
 		const route = await import(url.pathToFileURL(entryPath).toString()) as RouterMiddlewareRoute;
 
+		if (route.routeEnabled != null && !route.routeEnabled)
+		{
+			return;
+		}
+
 		if (route.routePath == null)
 		{
 			return;
 		}
+
+		const routePaths = Array.isArray(route.routePath) ? route.routePath : [ route.routePath ];
 
 		if (route.routeGet != null)
 		{
@@ -144,9 +154,12 @@ export class RouterMiddleware
 				route.routeGet,
 			];
 
-			this.router.get(route.routePath, ...middleware);
+			for (const routePath of routePaths)
+			{
+				this.router.get(routePath, ...middleware);
 
-			console.log(`[RouterMiddleware] Loaded GET ${ route.routePath }`);
+				console.log(`[RouterMiddleware] Loaded GET ${ routePath }`);
+			}
 		}
 
 		if (route.routePost != null)
@@ -158,9 +171,12 @@ export class RouterMiddleware
 				route.routePost,
 			];
 
-			this.router.post(route.routePath, ...middleware);
+			for (const routePath of routePaths)
+			{
+				this.router.post(routePath, ...middleware);
 
-			console.log(`[RouterMiddleware] Loaded POST ${ route.routePath }`);
+				console.log(`[RouterMiddleware] Loaded POST ${ routePath }`);
+			}
 		}
 	}
 }

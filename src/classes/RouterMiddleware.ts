@@ -31,7 +31,7 @@ export interface RouterMiddlewareLoadRouteOptions
 export interface RouterMiddlewareRoute
 {
 	/** Whether this route is enabled. Defaults to true if not specified. */
-	routeEnabled : boolean;
+	routeEnabled? : boolean;
 
 	/** The route's path. Can be an array for multiple paths that lead to the same route. */
 	routePath : string | string[];

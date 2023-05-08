@@ -117,6 +117,8 @@ export class RouterMiddleware
 				catch(error)
 				{
 					console.error(`[RouterMiddleware] Error loading route from ${ entryPath }:`, error);
+
+					throw error;
 				}
 			}
 		}
@@ -140,7 +142,7 @@ export class RouterMiddleware
 
 		if (route.routePath == null)
 		{
-			return;
+			throw new Error(`[RouterMiddleware] Route at ${ entryPath } does not have a route path.`);
 		}
 
 		const routePaths = Array.isArray(route.routePath) ? route.routePath : [ route.routePath ];
